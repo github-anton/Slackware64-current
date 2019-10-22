@@ -3,7 +3,7 @@
 CWD=$(pwd)
 PRGNAM="goldendict"
 VERSION="master"
-BUILD=2
+BUILD=3
 
 
 ARCH=$(uname -m)
