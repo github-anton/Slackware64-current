@@ -2,31 +2,32 @@
 
 CWD=$(pwd)
 PRGNAM="goldendict"
-VERSION="master"
-BUILD=3
+VERSION="master-14122019"
+BUILD=1
 
 
 ARCH=$(uname -m)
 
-HOME=/home/cycojesus
+#HOME=/home/cycojesus
 TAG=cyco
 OUTPUT=/tmp
 TMP=/tmp/$TAG
 PKG=$TMP/pkg-$PRGNAM
 
-rm -fr $PKG $TMP/$PRGNAM-$VERSION
-
 [ -e $TMP/$PRGNAM-$VERSION ] && rm -fr $TMP/$PRGNAM-$VERSION
+[ -e $TMP/$PRGNAM ] && rm -fr $TMP/$PRGNAM
 [ -e $PKG ] && rm -fr $PKG
+[ ! -e $TMP ] mkdir $TMP
 
-mkdir $TMP
-#cp $PRGNAM-$VERSION.tar.gz $TMP
-cp $PRGNAM-$VERSION.zip $TMP
-cd $TMP && rm -rf $PRGNAM-$VERSION
-#gzip -cd $PRGNAM-$VERSION.tar.gz | tar xvf -
-unzip $PRGNAM-$VERSION.zip
+cp $PRGNAM-$VERSION.tar.gz $TMP
+cd $TMP
+#cp $PRGNAM-$VERSION.zip $TMP
+gzip -cd $PRGNAM-$VERSION.tar.gz | tar xvf -
+#unzip $PRGNAM-$VERSION.zip
 
-mv $PRGNAM-$VERSION $PRGNAM && cd $PRGNAM
+#mv $PRGNAM-$VERSION $PRGNAM && cd $PRGNAM
+cd $PRGNAM
+
 qmake
 sed -i 's|usr/local|usr|g' Makefile
 sed -i 's|-L/usr/X11R6/lib|-L/usr/X11R6/lib64|g' Makefile
@@ -57,4 +58,3 @@ cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 makepkg -l y -c n $OUTPUT/$PRGNAM-$(echo $VERSION | tr - .)-$ARCH-$BUILD$TAG.txz
-

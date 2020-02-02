@@ -32,7 +32,7 @@ alias BEGINCOMMENT="if [ ]; then"
 alias ENDCOMMENT="fi"
 
 PRGNAM=ffmpeg
-VERSION=${VERSION:-3.4.6}
+VERSION=${VERSION:-4.2.1}
 TAG=${TAG:-ant}
 OUT=${OUT:-/tmp}
 

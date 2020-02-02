@@ -9,7 +9,7 @@
 set -e
 
 PRGNAM=x264
-VERSION=20171120
+VERSION=20191112
 TAG=${TAG:-ant}
 
 CWD=$(pwd)
