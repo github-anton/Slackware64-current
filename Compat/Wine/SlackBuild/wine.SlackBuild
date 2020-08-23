@@ -30,7 +30,7 @@ BUILD_STAGING=yes
 APPLY_PATCHES=no
 
 PRGNAM=${PRGNAM:-wine}
-VERSION=${VERSION:-5.0}
+VERSION=${VERSION:-5.12}
 TAG=${TAG:-ant}
 
 
@@ -137,6 +137,7 @@ if [ "$BUILD_STAGING" = "yes" ]; then
     #cd wine-staging-master/patches
     cd wine-staging-$VERSION/patches
     ./patchinstall.sh DESTDIR=$TMP/$PRGNAM-$VERSION --all
+    #./patchinstall.sh DESTDIR=$TMP/$PRGNAM-$VERSION --all -W user32-rawinput-hid -W user32-rawinput-mouse -W user32-rawinput-mouse-experimental -W user32-rawinput-nolegacy
 fi
 
 

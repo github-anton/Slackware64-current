@@ -2,9 +2,8 @@
 
 CWD=$(pwd)
 PRGNAM="goldendict"
-VERSION="master-14122019"
+VERSION="master-19072020"
 BUILD=1
-
 
 ARCH=$(uname -m)
 
@@ -14,12 +13,12 @@ OUTPUT=/tmp
 TMP=/tmp/$TAG
 PKG=$TMP/pkg-$PRGNAM
 
+[ ! -e $TMP ] && mkdir $TMP
 [ -e $TMP/$PRGNAM-$VERSION ] && rm -fr $TMP/$PRGNAM-$VERSION
 [ -e $TMP/$PRGNAM ] && rm -fr $TMP/$PRGNAM
 [ -e $PKG ] && rm -fr $PKG
-[ ! -e $TMP ] mkdir $TMP
 
-cp $PRGNAM-$VERSION.tar.gz $TMP
+cp $PRGNAM-$VERSION.tar.gz $TMP/
 cd $TMP
 #cp $PRGNAM-$VERSION.zip $TMP
 gzip -cd $PRGNAM-$VERSION.tar.gz | tar xvf -
@@ -40,7 +39,7 @@ fi
 make install INSTALL_ROOT=$PKG
 
 mkdir -p $PKG/install
-cat <<EOF > $PKG/install
+cat <<EOF > $PKG/install/slack-desc
 $PRGNAM: $PRGNAM (dictionary lookup program)
 $PRGNAM: 
 $PRGNAM: A feature-rich dictionary lookup program, supporting multiple dictionary
